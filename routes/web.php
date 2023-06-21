@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\TelegramController;
 
+use App\Events\HelloEvent;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,7 +35,10 @@ Route::get('/hi', function(){
     return view('chat');
 });
 
-Route::get('/chat', function(){
-    dd("oke");
-    return view('chat');
+Route::get('/send-msg', function() {
+    event(new HelloEvent());
+
+    return "oke";
 });
+
+//
