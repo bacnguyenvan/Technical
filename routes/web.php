@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 use App\Events\HelloEvent;
 
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,15 +35,29 @@ Route::match(['get', 'post'],'/send-message', [TelegramController::class, 'sendM
 //
 
 // web-socket
-Route::get('/hi', function(){
-    return view('chat');
+
+Route::get('/users', function(){
+    return view('users.index');
+})->name('users');
+
+Route::get('/login/{id}', function($id){
+    Auth::loginUsingId($id);
+
+    return redirect()->route('chat');
+})->name('login');
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/logout', function(){
+        Auth::logout();
+    
+        return redirect('users');
+    })->name('logout');
+    
+    Route::get('/chat-p2p', function(){
+        return view('chat');
+    })->name("chat");
+
 });
-
-// Route::get('/send-msg', function() {
-//     event(new HelloEvent());
-
-//     return "oke 12";
-// });
 
 
 Route::get('/ws', function() {

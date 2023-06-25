@@ -12,6 +12,7 @@
 
 <body>
     <div class="container">
+        <h2>User: {{ optional(auth()->user())->name }}</h2>
         <div class="row clearfix">
             <div class="col-lg-12">
                 <div class="card chat-app">
@@ -82,8 +83,8 @@
                                 <div class="col-lg-6 hidden-sm text-right">
                                     <a href="javascript:void(0);" class="btn btn-outline-secondary"><i class="fa fa-camera"></i></a>
                                     <a href="javascript:void(0);" class="btn btn-outline-primary"><i class="fa fa-image"></i></a>
-                                    <a href="javascript:void(0);" class="btn btn-outline-info"><i class="fa fa-cogs"></i></a>
-                                    <a href="javascript:void(0);" class="btn btn-outline-warning"><i class="fa fa-question"></i></a>
+                                    <a href="{{route('logout')}}" class="btn btn-outline-info"><i class="fa fa-sign-out"></i></a>
+                                    <!-- <a href="javascript:void(0);" class="btn btn-outline-warning"><i class="fa fa-question"></i></a> -->
                                 </div>
                             </div>
                         </div>
@@ -115,7 +116,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-send"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Enter text here...">
+                                <input type="text" id="input-message" class="form-control" placeholder="Enter text here...">
                             </div>
                         </div>
                     </div>
