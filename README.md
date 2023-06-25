@@ -14,12 +14,12 @@ document: https://github.com/laravel-notification-channels/telegram
 - The default location of the WebSocket dashboard is at /laravel-websockets
 
 - **[config]
-PUSHER_APP_ID=testwebsocket
-PUSHER_APP_KEY=qwerty
-PUSHER_APP_SECRET=1234
-PUSHER_HOST=localhost
-PUSHER_PORT=80
-PUSHER_SCHEME=http
+PUSHER_APP_ID=testwebsocket\n
+PUSHER_APP_KEY=qwerty\n
+PUSHER_APP_SECRET=1234\n
+PUSHER_HOST=localhost\n
+PUSHER_PORT=80\n
+PUSHER_SCHEME=http\n
 PUSHER_APP_CLUSTER=mt1
 
 - **[error]
@@ -31,3 +31,11 @@ Unknown app id: exception `BeyondCode\LaravelWebSockets\Exceptions\InvalidApp` t
 + Uncomment: App\Providers\BroadcastServiceProvider::class on config/app.php
 + HelloEvent implements ShouldBroadcast
 
+https://www.youtube.com/watch?v=AUlbN_xsdXg&ab_channel=Acadea.io
+
+
+- **[Laravel Echo]**
+- npm i laravel-echo pusher-js
+
+- **[Laravel mix -> vite]**
+- npm run dev

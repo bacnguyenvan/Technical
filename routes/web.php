@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\TelegramController;
 
+use Illuminate\Http\Request;
+
 use App\Events\HelloEvent;
 
 /*
@@ -35,10 +37,20 @@ Route::get('/hi', function(){
     return view('chat');
 });
 
-Route::get('/send-msg', function() {
-    event(new HelloEvent());
+// Route::get('/send-msg', function() {
+//     event(new HelloEvent());
 
-    return "oke";
+//     return "oke 12";
+// });
+
+
+Route::get('/ws', function() {
+    return view('websocket');
 });
 
+
+Route::post('/chat-message', function(Request $request) {
+    event(new HelloEvent($request->message));
+    return null;
+});
 //

@@ -14,12 +14,13 @@ class HelloEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    private string $message;
     /**
      * Create a new event instance.
      */
-    public function __construct()
+    public function __construct(string $message)
     {
-        //
+        $this->message = $message;
     }
 
     /**
@@ -29,7 +30,19 @@ class HelloEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('public.playground.1');
+        return new Channel('public.chat.1');
         
+    }
+
+    public function broadcastAs()
+    {
+        return 'chat-msg';
+    }
+
+    public function broadcastWith()
+    {
+        return [
+            'message' => $this->message
+        ];
     }
 }
