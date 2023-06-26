@@ -15,11 +15,15 @@ class HelloEvent implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     private string $message;
+    private int $senderId;
+    private int $receiverId;
     /**
      * Create a new event instance.
      */
-    public function __construct(string $message)
+    public function __construct(int $senderId, int $receiverId, string $message)
     {
+        $this->senderId = $senderId;
+        $this->receiverId = $receiverId;
         $this->message = $message;
     }
 
@@ -42,6 +46,8 @@ class HelloEvent implements ShouldBroadcast
     public function broadcastWith()
     {
         return [
+            'sender_id' => $this->senderId,
+            'reicever_id' => $this->receiverId,
             'message' => $this->message
         ];
     }

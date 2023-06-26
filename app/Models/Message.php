@@ -9,6 +9,8 @@ class Message extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['sender_id', 'receiver_id', 'content'];
+
     public static function getConversations($senderId, $receiverId)
     {
         return self::where(['sender_id' => $senderId, 'receiver_id' => $receiverId])

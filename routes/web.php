@@ -5,10 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TelegramController;
 use App\Http\Controllers\ChatController;
 
-use Illuminate\Http\Request;
-
-use App\Events\HelloEvent;
-
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -44,7 +40,7 @@ Route::get('/users', function(){
 Route::get('/login/{id}', function($id){
     Auth::loginUsingId($id);
 
-    return redirect()->route('chat');
+    return redirect()->route('converstation');
 })->name('login');
 
 Route::group(['middleware' => ['auth']], function() {
@@ -54,7 +50,7 @@ Route::group(['middleware' => ['auth']], function() {
         return redirect('users');
     })->name('logout');
     
-    Route::get('/chat-p2p', [ChatController::class, 'index'])->name("chat");
+    Route::get('/chat-p2p', [ChatController::class, 'index'])->name("converstation");
 
 });
 
@@ -64,8 +60,5 @@ Route::get('/ws', function() {
 });
 
 
-Route::post('/chat-message', function(Request $request) {
-    event(new HelloEvent($request->message));
-    return null;
-});
+Route::post('/chat-message', [ChatController::class, 'chat'])->name("chat");
 //

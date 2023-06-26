@@ -59,12 +59,11 @@
                                     <a href="javascript:void(0);" class="btn btn-outline-secondary"><i class="fa fa-camera"></i></a>
                                     <a href="javascript:void(0);" class="btn btn-outline-primary"><i class="fa fa-image"></i></a>
                                     <a href="{{route('logout')}}" class="btn btn-outline-info"><i class="fa fa-sign-out"></i></a>
-                                    <!-- <a href="javascript:void(0);" class="btn btn-outline-warning"><i class="fa fa-question"></i></a> -->
                                 </div>
                             </div>
                         </div>
                         <div class="chat-history">
-                            <ul class="m-b-0">
+                            <ul class="m-b-0" id="content-converstation">
                                 @foreach($conversations as $c)
                                 <li class="clearfix">
                                     <div class="message-data {{($c->sender_id == auth()->user()->id)?'text-right' : 'text-left'}}">
@@ -79,12 +78,16 @@
                             </ul>
                         </div>
                         <div class="chat-message clearfix">
-                            <div class="input-group mb-0">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fa fa-send"></i></span>
+                            <form id="form">
+                                <div class="input-group mb-0">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-send"></i></span>
+                                    </div>
+                                    <input type="text" id="input-message" class="form-control" placeholder="Enter text here...">
                                 </div>
-                                <input type="text" id="input-message" class="form-control" placeholder="Enter text here...">
-                            </div>
+                                <input type="hidden" value="{{auth()->user()->id}}" id="s_id"/>
+                                <input type="hidden" value="{{$lists[0]->id}}" id="r_id"/>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -106,6 +109,7 @@
             });
         });
     </script>
+    @vite('resources/js/app.js')
 </body>
 
 </html>

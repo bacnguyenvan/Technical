@@ -6,6 +6,7 @@ use App\Models\Message;
 use Illuminate\Http\Request;
 
 use App\Models\User;
+use App\Events\HelloEvent;
 
 class ChatController extends Controller
 {
@@ -23,5 +24,24 @@ class ChatController extends Controller
         }
 
         return view('chat', compact('lists', 'conversations'));
+    }
+
+    public function chat(Request $request)
+    {
+        $message = $request->message;
+        $senderId = $request->senderId;
+        $receiverId = $request->receiverId;
+
+        $data = [
+            'sender_id' => $senderId,
+            'receiver_id' => $receiverId,
+            'content' => $message
+        ];
+
+        $messageData = Message::create($data);
+
+        event(new HelloEvent($senderId, $receiverId, $message));
+
+        return $message;
     }
 }
