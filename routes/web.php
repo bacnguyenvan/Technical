@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\TelegramController;
+use App\Http\Controllers\ChatController;
 
 use Illuminate\Http\Request;
 
@@ -53,9 +54,7 @@ Route::group(['middleware' => ['auth']], function() {
         return redirect('users');
     })->name('logout');
     
-    Route::get('/chat-p2p', function(){
-        return view('chat');
-    })->name("chat");
+    Route::get('/chat-p2p', [ChatController::class, 'index'])->name("chat");
 
 });
 
