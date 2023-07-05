@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 use App\Events\HelloEvent;
+use App\Events\GroupEvent;
 
 class ChatController extends Controller
 {
@@ -43,5 +44,13 @@ class ChatController extends Controller
         event(new HelloEvent($senderId, $receiverId, $message));
 
         return $message;
+    }
+
+    public function groupChat(Request $request)
+    {
+        $message = $request->message;
+        event(new GroupEvent($message, auth()->user()));
+        
+        return null;
     }
 }

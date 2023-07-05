@@ -14,7 +14,7 @@
             <ul id="list-message">
                 
             </ul>
-            <form id="form-p2p" method="POST">
+            <form id="form-group" method="POST">
                 @csrf
                 <label>Enter your message: </label>
                 <input type="text" name="message" id="input-message" />
@@ -38,7 +38,7 @@
         </div>
     </div>
 
-    @vite('resources/js/app.js')
+    @vite('resources/js/app_group.js')
 </body>
 
 </html>

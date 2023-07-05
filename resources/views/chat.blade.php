@@ -78,7 +78,7 @@
                             </ul>
                         </div>
                         <div class="chat-message clearfix">
-                            <form id="form">
+                            <form id="form-p2p">
                                 <div class="input-group mb-0">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fa fa-send"></i></span>

@@ -52,6 +52,17 @@ Route::group(['middleware' => ['auth']], function() {
     
     Route::get('/chat-p2p', [ChatController::class, 'index'])->name("converstation");
 
+
+    // Group
+
+    Route::group(['prefix' => 'group'], function() {
+        Route::get('/ws', function() {
+            return view('group.websocket');
+        });
+
+        Route::post('/chat', [ChatController::class, 'groupChat'])->name("groupChat");
+    });
+
 });
 
 
@@ -59,6 +70,9 @@ Route::get('/ws', function() {
     return view('websocket');
 });
 
-
 Route::post('/chat-message', [ChatController::class, 'chat'])->name("chat");
-//
+
+
+
+
+
