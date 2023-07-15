@@ -5,6 +5,7 @@ const form = document.getElementById('form-group');
 
 const inputMessage = document.getElementById('input-message');
 
+const listMessage = document.getElementById('list-message');
 
 form.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -21,11 +22,30 @@ form.addEventListener('submit', function (event) {
 
 // Group
 
-const channel = Echo.private('private.chat.1'); // Echo.channel -> Echo.private
+const channel = Echo.join('private.chat.1'); // Echo.channel -> Echo.private
 
-channel.subscribed(() => {
-    console.log('subscribed');
-}).listen('.chat-msg', (event) => { // chat-msg: broadcastAs
-    console.log("data: ", event);
+channel
+.here((users) => {
+    console.log("here");
+})
+.joining((user) => {
+    addChatMessage(user.name, "has joined the room!")
+})
+.leaving((user) => {
+    addChatMessage(user.name, "has left the room.", "grey")
+})
+.listen('.chat-msg', (event) => { // chat-msg: broadcastAs
+    const message = event.message;
+
+    addChatMessage(event.user.name, message);
+
 });
 
+function addChatMessage(name, message, color = "black") {
+    var mesContent = '<div class="message">' +
+            '<h4 class="mes-name">' + name + '</h4>' +
+            '<div class="mes-content" style="color: ' + color + '">' + message +  '</div>' +
+        '</div>';
+    
+    listMessage.innerHTML += mesContent;
+}
