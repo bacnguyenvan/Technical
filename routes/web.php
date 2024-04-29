@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\TelegramController;
+use App\Http\Controllers\HomeController;
 
 use App\Events\HelloEvent;
 
@@ -19,9 +20,12 @@ use App\Events\HelloEvent;
 
 Route::get('/check-server', [TelegramController::class, 'checkServer']);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+Route::get('/', [HomeController::class, 'index']);
 
 
 // Teletegram
