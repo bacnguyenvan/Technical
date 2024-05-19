@@ -46,3 +46,6 @@ Route::get('/send-msg', function() {
 });
 
 //
+
+// google sheet
+Route::get('/auth/google/client/callback', [HomeController::class, 'googleCallback']);
