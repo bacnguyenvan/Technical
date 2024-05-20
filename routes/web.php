@@ -27,6 +27,8 @@ Route::get('/check-server', [TelegramController::class, 'checkServer']);
 
 Route::get('/', [HomeController::class, 'index']);
 
+Route::get('/create-user', [HomeController::class, 'createUser']);
+
 
 // Teletegram
 Route::get('/contact', [TelegramController::class, 'index']);
