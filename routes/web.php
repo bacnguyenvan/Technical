@@ -46,3 +46,5 @@ Route::get('/send-msg', function() {
 });
 
 //
+
+Route::get('/create-user', [HomeController::class, 'createUser']);
