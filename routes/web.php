@@ -46,3 +46,9 @@ Route::get('/send-msg', function() {
 });
 
 //
+
+// business
+Route::get('/english', function(){
+    return view('english.index');
+});
+
