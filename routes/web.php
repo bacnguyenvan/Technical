@@ -46,3 +46,6 @@ Route::get('/send-msg', function() {
 });
 
 //
+
+// architect
+Route::get('/binding-injection', [HomeController::class, 'testOne']);
