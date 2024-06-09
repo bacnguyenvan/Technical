@@ -31,3 +31,6 @@ Unknown app id: exception `BeyondCode\LaravelWebSockets\Exceptions\InvalidApp` t
 + Uncomment: App\Providers\BroadcastServiceProvider::class on config/app.php
 + HelloEvent implements ShouldBroadcast
 
+3. DI
+NotifyInterface
+
