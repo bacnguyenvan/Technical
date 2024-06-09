@@ -33,4 +33,5 @@ Unknown app id: exception `BeyondCode\LaravelWebSockets\Exceptions\InvalidApp` t
 
 3. DI
 NotifyInterface
+MailSender
 
