@@ -27,6 +27,9 @@ Route::get('/check-server', [TelegramController::class, 'checkServer']);
 
 Route::get('/', [HomeController::class, 'index']);
 
+// payment with EPSILON 
+Route::match(['get', 'post'],'/payment/epsilon', [HomeController::class, 'epsilon'])->name('payment-epsilon');
+
 
 // Teletegram
 Route::get('/contact', [TelegramController::class, 'index']);
