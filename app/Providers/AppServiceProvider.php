@@ -15,6 +15,10 @@ class AppServiceProvider extends ServiceProvider
             \App\Contracts\NotifyInterface::class,
             \App\Contracts\MailSender::class
         );
+
+        if ($this->app->isLocal()) {
+            $this->app->register(TelescopeServiceProvider::class);
+        }
     }
 
     /**

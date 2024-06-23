@@ -37,6 +37,9 @@ Route::get('/activity', [TelegramController::class, 'getActivity']);
 Route::match(['get', 'post'],'/send-message', [TelegramController::class, 'sendMessage']);
 //
 
+// Home
+Route::get('/videos', [HomeController::class, 'videos']);
+
 // web-socket
 Route::get('/hi', function(){
     return view('chat');

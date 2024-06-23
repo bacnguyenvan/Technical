@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\NotifyInterface;
+use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
@@ -184,5 +185,10 @@ class HomeController extends Controller
         }
 
         return view('payment.epsilon');
+    }
+
+    public function videos()
+    {
+        return Video::all();
     }
 }
