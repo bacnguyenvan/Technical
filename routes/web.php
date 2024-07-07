@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\TelegramController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InventoryController;
 
 use App\Events\HelloEvent;
 
@@ -55,3 +56,9 @@ Route::get('/send-msg', function() {
 
 // architect
 Route::get('/binding-injection', [HomeController::class, 'testOne']);
+
+// handle inventory
+// update quantity when order success
+Route::get('/inventory', [InventoryController::class, 'handle'])->middleware('json.response');
+
+# action
