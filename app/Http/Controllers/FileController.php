@@ -25,28 +25,15 @@ class FileController extends Controller
 
     public function uploadChunk(Request $request)
     {
-        // ini_set('open_basedir', 'C:\Windows\Temp');
-
-        // dd(phpinfo());
-        $request->validate(
-            ['file' => 'required']
-        );
-
         $fileName = $request->input('file_name');
         $chunkIndex = $request->input('chunk_index');
         $totalChunks = $request->input('total_chunks');
 
         $file = $request->file('file');
 
-        $path = 'uploads/';
+        $tempDir = storage_path('app/uploads/' . $fileName);
 
-        if (!file_exists($path)) {
-            \Log::info("grant 777");
-            mkdir($path, 0777, true);
-        }
-
-        $tempDir = $path . "/" . $fileName;
-
+        // Create the temporary directory if it doesn't exist
         if (!file_exists($tempDir)) {
             mkdir($tempDir, 0777, true);
         }
@@ -66,13 +53,24 @@ class FileController extends Controller
         return response()->json(['status' => 'Chunk uploaded']);
     }
 
-    private function combineChunks($tempDir)
+    private function combineChunks($tempDir, $fileName)
     {
-        
+        $path = 'app/public/uploads/';
+
+        if (!file_exists(storage_path($path))) {
+            mkdir(storage_path($path), 0777, true);
+        }
+
+        $finalPath = storage_path($path . $fileName);
+
+        if (is_file($finalPath)) {
+            $finalFile = fopen($finalPath, 'r');
+        } else {
+            $finalFile = fopen($finalPath, 'w');
+        }
+
         $chunkFiles = glob("$tempDir/*");
         natsort($chunkFiles);
-
-        $finalFile = fopen(public_path($tempDir), 'r');
 
         foreach ($chunkFiles as $chunkFile) {
             $chunkData = file_get_contents($chunkFile);
