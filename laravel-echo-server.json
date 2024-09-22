@@ -1,0 +1,39 @@
+{
+	"authHost": "http://192.168.20.135",
+	"authEndpoint": "/api/broadcasting/auth",
+	"clients": [
+		{
+			"appId": "96de0c482f65a766",
+			"key": "ae3c625da07c92e43fc327a4bbc6bc04"
+		}
+	],
+	"database": "redis",
+	"databaseConfig": {
+		"redis": {
+			"host": "127.0.0.1",
+			"port": "6379"
+		}
+	},
+	"devMode": true,
+	"host": "192.168.20.135",
+	"port": "6001",
+	"protocol": "http",
+	"socketio": {
+		"transports": ["websocket", "polling"]
+	},
+	"secureOptions": 67108864,
+	"sslCertPath": "",
+	"sslKeyPath": "",
+	"sslCertChainPath": "",
+	"sslPassphrase": "",
+	"subscribers": {
+		"http": true,
+		"redis": true
+	},
+	"apiOriginAllow": {
+		"allowCors": true,
+		"allowOrigin": "",
+		"allowMethods": "",
+		"allowHeaders": ""
+	}
+}

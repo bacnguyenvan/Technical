@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 use App\Events\HelloEvent;
+use App\Events\MessageSent;
+use App\Models\Chat;
 
 class ChatController extends Controller
 {
@@ -44,4 +46,24 @@ class ChatController extends Controller
 
         return $message;
     }
+
+
+    public function sendMessage(Request $request)
+    {
+        $message = Chat::create([
+            'user_id' => auth()->id(),
+            'message' => $request->message
+        ]);
+
+        broadcast(new MessageSent($message))->toOthers();
+
+        return response()->json(['status' => 'Message Sent!']);
+    }
+
+    public function getMessages()
+    {
+        return Chat::with('user')->get();
+    }
+
+
 }

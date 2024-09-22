@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ChatController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +24,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/upload-files', [FileController::class, 'upload']);
 
 Route::post('/upload-chunk', [FileController::class, 'uploadChunk']);
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/messages', [ChatController::class, 'sendMessage']);
+    Route::get('/messages', [ChatController::class, 'getMessages']);
+});
+
+
+Route::post('/login', [UserController::class, 'login']);
+Route::get('/logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
