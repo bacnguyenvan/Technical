@@ -11,6 +11,7 @@ use App\Http\Controllers\ChatController;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\ArrayHelpers;
+use App\Http\Controllers\ElasticsearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -128,3 +129,11 @@ Route::get('/import-data', function () {
 
     return "import success";
 });
+
+
+// Elastic search
+Route::get('/el', [ElasticsearchController::class, 'index'])->name("el-index");
+Route::get('/el/search', [ElasticsearchController::class, 'search'])->name("el-search");
+Route::post('/el/create', [ElasticsearchController::class, 'create'])->name("el-create");
+
+Route::get('/el/update', [ElasticsearchController::class, 'update'])->name("el-update");

@@ -44,3 +44,6 @@ MailSender
 
 ## Laravel mix -> vite
 > npm run dev
+
+4. Elastic search
+> https://github.com/elasticquent/Elasticquent
