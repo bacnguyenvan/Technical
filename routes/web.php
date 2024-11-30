@@ -12,6 +12,7 @@ use App\Models\Customer;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\ArrayHelpers;
 use App\Http\Controllers\ElasticsearchController;
+use App\Http\Controllers\LineController;
 
 /*
 |--------------------------------------------------------------------------
@@ -137,3 +138,8 @@ Route::get('/el/search', [ElasticsearchController::class, 'search'])->name("el-s
 Route::post('/el/create', [ElasticsearchController::class, 'create'])->name("el-create");
 
 Route::get('/el/update', [ElasticsearchController::class, 'update'])->name("el-update");
+
+
+// LINE
+Route::get('/line/login', [LineController::class, 'login'])->name("line-login");
+Route::get('/line/login/callback', [LineController::class, 'callback'])->name("line-callback");
