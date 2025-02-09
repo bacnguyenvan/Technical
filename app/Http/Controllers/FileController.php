@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\Storage;
 
 class FileController extends Controller
 {
+    public function uploadView()
+    {
+        return view('file.index');
+    }
+
     public function upload(Request $request)
     {
         $request->validate(

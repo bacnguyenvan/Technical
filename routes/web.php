@@ -12,6 +12,7 @@ use App\Models\Customer;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\ArrayHelpers;
 use App\Http\Controllers\ElasticsearchController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\LineController;
 
 /*
@@ -143,3 +144,7 @@ Route::get('/el/update', [ElasticsearchController::class, 'update'])->name("el-u
 // LINE
 Route::get('/line/login', [LineController::class, 'login'])->name("line-login");
 Route::get('/line/login/callback', [LineController::class, 'callback'])->name("line-callback");
+
+
+// upload file via s3
+Route::get('/file/upload', [FileController::class, 'uploadView'])->name("upload-file");

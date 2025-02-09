@@ -3,6 +3,7 @@
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\NotificationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -34,3 +35,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::post('/login', [UserController::class, 'login']);
 Route::get('/logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
+
+# firebase
+Route::prefix('notifications')->name('notifications.')->group(function () {
+    Route::post('/test', [NotificationController::class, 'sendTestNotification']);
+});
