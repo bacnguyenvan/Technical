@@ -51,10 +51,12 @@ class NotificationController extends Controller
         $report = Firebase::messaging()->sendAll($message);
         $success = [];
         $failure = [];
+
         foreach ($report->getItems() as $item) {
+            // dd($item->message());
             $_mem_noti_id = $item->message()
-                ->jsonSerialize()['data']
-                ->jsonSerialize()['_mem_noti_id'];
+            ->jsonSerialize()['data']['_mem_noti_id'];
+
             if ($item->isSuccess()) {
                 $success[$_mem_noti_id] = $_mem_noti_id;
             } else {
@@ -66,5 +68,11 @@ class NotificationController extends Controller
             'success' => $success,
             'failure' => $failure,
         ];
+    }
+
+
+    public function getFCMToken()
+    {
+        return view('firebase.fcm_token');
     }
 }

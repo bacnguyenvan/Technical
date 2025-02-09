@@ -38,5 +38,6 @@ Route::get('/logout', [UserController::class, 'logout'])->middleware('auth:sanct
 
 # firebase
 Route::prefix('notifications')->name('notifications.')->group(function () {
+    Route::get('/fcm_token', [NotificationController::class, 'getFCMToken']);
     Route::post('/test', [NotificationController::class, 'sendTestNotification']);
 });
